@@ -4,8 +4,8 @@
 //
 //  Created by Brandon Nghe on 3/1/19.
 //  Copyright © 2019 Brandon Nghe. All rights reserved.
-// test2
-
+// https://docs.opencv.org/3.1.0/examples.html
+// Guassian blur: https://www.bogotobogo.com/OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.php
 
 
 #import <vector>
