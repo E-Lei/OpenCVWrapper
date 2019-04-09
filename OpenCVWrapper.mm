@@ -8,7 +8,6 @@
 // Guassian blur: https://www.bogotobogo.com/OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.php
 // Up/Down sampling: https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/pyramids/pyramids.html?fbclid=IwAR2HMU6r-oqm6Z7D2mNpdpeJo2NwKeNk3hFTXPHUA95osHJLNU_DGEzWK8k
 
-
 #import <vector>
 #import <opencv2/opencv.hpp>
 #import <opencv2/imgproc.hpp>
@@ -49,6 +48,7 @@ cv::Mat img_motion_mag_;
 
 /// Converts an UIImage to Mat.
 /// Orientation of UIImage will be lost.
+// Swift to OpenCV
 static void UIImageToMat(UIImage *image, cv::Mat &mat) {
     assert(image.size.width > 0 && image.size.height);
     assert(image.CGImage != nil || image.CIImage != nil);
@@ -128,8 +128,10 @@ static UIImage *RestoreUIImageOrientation(UIImage *processed, UIImage *original)
 
 void init_src(cv::Mat &src){
     // Crops to center 512 x 512 of Input
+    // 244 and 14 are  corner points
     src = src(cv::Rect(244,14,512,512));
     src.convertTo(src, CV_32FC3, 1.0/255.0f);
+    // convert
     cvtColor(src, src, COLOR_BGR2Lab);
 }
 
