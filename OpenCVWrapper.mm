@@ -5,6 +5,7 @@
 //  Created by Brandon Nghe on 3/1/19.
 //  Copyright © 2019 Brandon Nghe. All rights reserved.
 // https://docs.opencv.org/3.1.0/examples.html
+
 // Guassian blur: https://www.bogotobogo.com/OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.php
 // Up/Down sampling: https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/pyramids/pyramids.html?fbclid=IwAR2HMU6r-oqm6Z7D2mNpdpeJo2NwKeNk3hFTXPHUA95osHJLNU_DGEzWK8k
 
