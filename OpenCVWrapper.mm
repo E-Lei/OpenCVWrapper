@@ -6,6 +6,8 @@
 //  Copyright © 2019 Brandon Nghe. All rights reserved.
 // https://docs.opencv.org/3.1.0/examples.html
 // Guassian blur: https://www.bogotobogo.com/OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.php
+// Up/Down sampling: https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/pyramids/pyramids.html?fbclid=IwAR2HMU6r-oqm6Z7D2mNpdpeJo2NwKeNk3hFTXPHUA95osHJLNU_DGEzWK8k
+
 
 #import <vector>
 #import <opencv2/opencv.hpp>
@@ -14,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 #import "OpenCVWrapper.h"
+
+//Beginning of example code
 
 using namespace cv;
 using namespace std;
@@ -52,6 +56,8 @@ static void UIImageToMat(UIImage *image, cv::Mat &mat) {
     // Create a pixel buffer.
     NSInteger width = image.size.width;
     NSInteger height = image.size.height;
+    // Constructs 2D matrix of the specified size and type CV_8UC4
+    // CV_8UC4 = [8U=Unsigned int 8-bit], [C4=Four channels]
     cv::Mat mat8uc4 = cv::Mat((int)height, (int)width, CV_8UC4);
 
     // Draw all pixels to the buffer.
@@ -271,7 +277,10 @@ void buildImgFromGaussPyr(const Mat &pyr, const int levels, Mat &dst, cv::Size s
         currentLevel = up;
     }
     // Resize the image to comprehend errors due to rounding
+    // Documentation: "resizes matrix to the specified number of hyper-planes; initializes the newly added elements"
     resize(currentLevel,currentLevel,size);
+
+    // Copies the matrix content to "dst"
     currentLevel.copyTo(dst);
 }
 
