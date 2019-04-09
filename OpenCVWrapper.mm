@@ -4,8 +4,7 @@
 //
 //  Created by Brandon Nghe on 3/1/19.
 //  Copyright © 2019 Brandon Nghe. All rights reserved.
-// https://docs.opencv.org/3.1.0/examples.html
-
+// Some sample docs: https://docs.opencv.org/3.1.0/examples.html
 // Guassian blur: https://www.bogotobogo.com/OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.php
 // Up/Down sampling: https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/pyramids/pyramids.html?fbclid=IwAR2HMU6r-oqm6Z7D2mNpdpeJo2NwKeNk3hFTXPHUA95osHJLNU_DGEzWK8k
 
@@ -243,7 +242,7 @@ void idealFilter(const Mat &src, Mat &dst , double cutoffLo, double cutoffHi, do
         // apply
         mulSpectrums(tempImg, filter, tempImg, DFT_ROWS);
 
-        // inverse
+        // inverse DFT of a 1D or 2D array
         idft(tempImg, tempImg, DFT_ROWS | DFT_SCALE);
 
         tempImg(cv::Rect(0, 0, current.cols, current.rows)).copyTo(channels[curChannel]);
@@ -265,7 +264,9 @@ void amplify(const Mat &src, Mat &dst){
 void buildImgFromGaussPyr(const Mat &pyr, const int levels, Mat &dst, cv::Size size)
 {
     printf("\nERROR b1");
+    // currentLevel is a deep copy of pyr
     Mat currentLevel = pyr.clone();
+
 
     printf("\nERROR b2");
 
@@ -273,6 +274,7 @@ void buildImgFromGaussPyr(const Mat &pyr, const int levels, Mat &dst, cv::Size s
         printf("\nERROR b3");
         Mat up;
         printf("\nERROR b4");
+        // pyrUp: upsampling [currentLevel = current image] [up = destination image (to be shown on screen), will be ~2x input image]
         pyrUp(currentLevel, up);
         printf("\nERROR b5");
         currentLevel = up;
@@ -283,6 +285,7 @@ void buildImgFromGaussPyr(const Mat &pyr, const int levels, Mat &dst, cv::Size s
 
     // Copies the matrix content to "dst"
     currentLevel.copyTo(dst);
+    // dst = " output array that has the same size and type as input arrays"
 }
 
 @implementation OpenCVWrapper
@@ -299,6 +302,8 @@ void buildImgFromGaussPyr(const Mat &pyr, const int levels, Mat &dst, cv::Size s
     init_src(src);
 
     // Save input frame
+    // push_back = adds new element to vector "inputFrames"
+       // effectively increases the container size by one
     inputFrames.push_back(src);
 
     // 1. Spatial Filter, GAUSSIAN
